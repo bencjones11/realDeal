@@ -1,0 +1,98 @@
+<head>
+    <link rel="stylesheet" href="books.css">
+
+    <script
+    src="http://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+    </script>
+<script>
+    $(document).ready(function() {
+        var index = 0;
+        var myurl = "https://api.nytimes.com/svc/books/v3/lists.json";
+    myurl += '?' + $.param({
+        "api-key": "28d2e7d07f9b498d9918c873255058eb",
+        "list": "e-book-fiction"
+    });
+    var settings = {
+        "url": myurl,
+        "method": "GET",
+        "success":function(parsed_json){
+            var theResults = parsed_json.results[0];
+            console.log(theResults);
+            var bookListHtml = "";
+            bookListHtml += "<p>";
+            for (var i = index; i < index+5; i++){
+                bookListHtml += "<h4>";
+                bookListHtml += parsed_json.results[i].book_details[0].title;
+                bookListHtml += "</h4>";
+                bookListHtml += "<ul>";
+                bookListHtml += "<li>Author: ";
+                bookListHtml += parsed_json.results[i].book_details[0].author;
+                bookListHtml += "</li>";
+                bookListHtml += "<li>Description: ";
+                bookListHtml += parsed_json.results[i].book_details[0].description;
+                bookListHtml += "</li>";
+                bookListHtml += "<li>Link: <a href=\"";
+                bookListHtml += parsed_json.results[i].amazon_product_url;
+                bookListHtml += "\">Click here to buy</a></li>";
+                bookListHtml += "</ul>";
+            }
+            bookListHtml += "</p>";
+            $("#bookList").html(bookListHtml);
+        }
+    }
+    $.ajax(settings);
+        $('#nextButton').click(function(e){
+            index += 5;
+            if (index > 10){
+                index = 0;
+            }
+            e.preventDefault();
+            console.log(index);
+    var myurl = "https://api.nytimes.com/svc/books/v3/lists.json";
+    myurl += '?' + $.param({
+        "api-key": "28d2e7d07f9b498d9918c873255058eb",
+        "list": "e-book-fiction"
+    });
+    var settings = {
+        "url": myurl,
+        "method": "GET",
+        "success":function(parsed_json){
+            var theResults = parsed_json.results[0];
+            console.log(theResults);
+            var bookListHtml = "";
+            bookListHtml += "<p>";
+            for (var i = index; i < index+5; i++){
+                bookListHtml += "<h4>";
+                bookListHtml += parsed_json.results[i].book_details[0].title;
+                bookListHtml += "</h4>";
+                bookListHtml += "<ul>";
+                bookListHtml += "<li>Author: ";
+                bookListHtml += parsed_json.results[i].book_details[0].author;
+                bookListHtml += "</li>";
+                bookListHtml += "<li>Description: ";
+                bookListHtml += parsed_json.results[i].book_details[0].description;
+                bookListHtml += "</li>";
+                bookListHtml += "<li>Link: <a href=\"";
+                bookListHtml += parsed_json.results[i].amazon_product_url;
+                bookListHtml += "\">Click here to buy</a></li>";
+                bookListHtml += "</ul>";
+            }
+            bookListHtml += "</p>";
+            $("#bookList").html(bookListHtml);
+                }
+            }
+            $.ajax(settings);
+        });
+    });
+</script>
+</head>
+
+<body>
+    <h1>Booklist</h1>
+    <p>What book would you like to read?</p>
+    <div id="bookList">...</div>
+
+    <input type="submit" id="nextButton" value="Next">
+</body>

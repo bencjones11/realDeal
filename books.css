@@ -1,0 +1,46 @@
+h1 {
+    font-family: verdana;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    text-align: center;
+}
+
+li {
+    padding-bottom: 15px;
+}
+
+body {
+    background-image: url("https://www.valpak.com/blog/wp-content/uploads/2014/04/woman-hammock-reading-book.jpg");
+}
+
+#booklist {
+    background-color: rgba(255,255,255,0.6);
+    font-family: verdana;
+    width: 75%;
+    margin: auto;
+}
+
+h4 {
+    background-color: rgba(255,255,255,0.6);
+    padding: 15px;
+}
+
+#nextbutton {
+    float: right;
+    color: white;
+    background-color: blue;
+    border: none;
+    font-size: 20px;
+    margin-right: 180px;
+    margin-bottom: 20px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+#nextbutton:hover {
+background-color: grey;
+color: white;
+}
